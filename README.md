@@ -11,6 +11,21 @@ pip uninstall grpcio; conda install grpcio
 ```
 이거 사용해서 오류 없애줌,,
 
+## AntiPattern
+- **ray.get을 for문 안에서 계속 부르지 마라**
+  - for문안에서 계속 ray.get을 하면 해당 함수가 결과를 낼 때 까지 다음 번 명령을 실행하지 못한다
+    - 즉 병렬적으로 처리하지 못한다
+- ray.get을 자주 호출하지 마라
+  - 데이터 변경이 일어나지 않고 다른 ray function에 사용해야된다면 굳이 데이터를 꺼냈다가 넣지 마라
+    - 데이터의 불필요한 이동 일어난다
+- 큰 데이터를 ray function안에서 사용하게 하지 마라
+  - ray.put 을 이용하여 미리 Ray object store에 저장하고 ray.get으로 불러서 사용해라
+- ray안에 있는 큰 데이터를 한번에 부르지 마라
+  - batch로 나눠서 가져와라 안그러면 OOM(out of memory)일어난다
+- 너무 작은 함수를 병렬,분산처리 하도록 하지 마라
+- 글로벌 변수를 ray function에서 수정하지 마라
+- ray function 지정은 한번만 해라
+
 # 데이터 크롤링
 # 우리의 식탁
 
