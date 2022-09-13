@@ -26,6 +26,9 @@ pip uninstall grpcio; conda install grpcio
 - 글로벌 변수를 ray function에서 수정하지 마라
 - ray function 지정은 한번만 해라
 
+### 출처
+[Ray 공식문서](https://docs.ray.io/en/latest/ray-core/tasks/patterns/)
+
 # 데이터 크롤링
 # 우리의 식탁
 
